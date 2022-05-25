@@ -6,89 +6,89 @@
 /*   By: rodsanch <rodsanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 15:16:24 by rodsanch          #+#    #+#             */
-/*   Updated: 2022/05/24 17:56:15 by rodsanch         ###   ########.fr       */
+/*   Updated: 2022/05/25 15:39:10 by rodsanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line_bonus.h"
 
-char	*ft_free(char *buf1, char *buf2)
+char	*ft_join_free(char *buf1, char *buf2)
 {
-	char	*temp;
+	char	*aux;
 
-	temp = ft_strjoin(buf1, buf2);
+	aux = ft_strjoin(buf1, buf2);
 	free(buf1);
-	return (temp);
+	return (aux);
 }
 
-char	*ft_read(int fd, char *res)
+char	*ft_read(int fd, char *save)
 {
-	char	*buffer;
+	char	*buf1;
 	int		z;
 
-	if (!res)
-		res = ft_calloc(1, 1);
-	buffer = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
+	if (!save)
+		save = (char *)ft_calloc(1, 1);
+	buf1 = (char *)ft_calloc(BUFFER_SIZE + 1, sizeof(char));
 	z = 1;
 	while (z > 0)
 	{
-		z = read(fd, buffer, BUFFER_SIZE);
+		z = read(fd, buf1, BUFFER_SIZE);
 		if (z == -1)
 		{
-			free(buffer);
+			free(buf1);
 			return (NULL);
 		}
-		buffer[z] = 0;
-		res = ft_free(res, buffer);
-		if (ft_strchr(buffer, '\n'))
+		buf1[z] = 0;
+		save = ft_join_free(save, buf1);
+		if (ft_strchr(buf1, '\n'))
 			break ;
 	}
-	free(buffer);
-	return (res);
+	free(buf1);
+	return (save);
 }
 
-char	*ft_line(char *buffer)
+char	*ft_line(char *buf1)
 {
 	char	*line;
 	int		i;
 
 	i = 0;
-	if (!buffer[i])
+	if (!buf1[i])
 		return (NULL);
-	while (buffer[i] && buffer[i] != '\n')
+	while (buf1[i] && buf1[i] != '\n')
 		i++;
-	line = ft_calloc(i + 2, sizeof(char));
+	line = (char *)ft_calloc(i + 2, sizeof(char));
 	i = 0;
-	while (buffer[i] && buffer[i] != '\n')
+	while (buf1[i] && buf1[i] != '\n')
 	{
-		line[i] = buffer[i];
+		line[i] = buf1[i];
 		i++;
 	}
-	if (buffer[i] && buffer[i] == '\n')
+	if (buf1[i] && buf1[i] == '\n')
 		line[i++] = '\n';
 	return (line);
 }
 
-char	*ft_save(char *buffer)
+char	*ft_save(char *buf1)
 {
 	int		i;
 	int		j;
 	char	*line;
 
 	i = 0;
-	while (buffer[i] && buffer[i] != '\n')
+	while (buf1[i] && buf1[i] != '\n')
 		i++;
-	if (!buffer[i])
+	if (!buf1[i])
 	{
-		free(buffer);
+		free(buf1);
 		return (NULL);
 	}
-	line = ft_calloc((ft_strlen(buffer) - i + 1), sizeof(char));
+	line = (char *)ft_calloc((ft_strlen(buf1) - i + 1), sizeof(char));
 	i++;
 	j = 0;
-	while (buffer[i])
-		line[j++] = buffer[i++];
-	free(buffer);
+	while (buf1[i])
+		line[j++] = buf1[i++];
+	free(buf1);
 	return (line);
 }
 
