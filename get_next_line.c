@@ -6,7 +6,7 @@
 /*   By: rodsanch <rodsanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 11:30:45 by rodsanch          #+#    #+#             */
-/*   Updated: 2022/05/25 15:39:37 by rodsanch         ###   ########.fr       */
+/*   Updated: 2022/05/26 16:58:21 by rodsanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,8 +112,19 @@ char	*get_next_line(int fd)
 	int	file;
 
 	file = open("texto.txt", O_RDWR);
-	printf("file: %s\n", get_next_line(file));
-	printf("file: %s\n", get_next_line(file));
-	printf("file: %s\n", get_next_line(file));
+	char	*line = get_next_line(file);
+	char	*line2 = get_next_line(file);
+	char	*line3 = get_next_line(file);
+	char	*line4 = get_next_line(file);
+
+	printf("file: %s\n", line);
+	printf("file: %s\n", line2);
+	printf("file: %s\n", line3);
+	printf("file: %s\n", line4);
+	free(line);
+	free(line2);
+	free(line3);
+	free(line4);
+	close(file);
 }
  */

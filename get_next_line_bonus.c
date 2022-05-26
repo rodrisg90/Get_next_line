@@ -6,7 +6,7 @@
 /*   By: rodsanch <rodsanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 15:16:24 by rodsanch          #+#    #+#             */
-/*   Updated: 2022/05/25 15:39:10 by rodsanch         ###   ########.fr       */
+/*   Updated: 2022/05/26 17:02:50 by rodsanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,11 +114,30 @@ char	*get_next_line(int fd)
 
 	file = open("texto.txt", O_RDWR);
 	file2 = open("texto2.txt", O_RDWR);
-	printf("file: %s\n", get_next_line(file));
-	printf("file: %s\n", get_next_line(file2));
-	printf("file: %s\n", get_next_line(file));
-	printf("file: %s\n", get_next_line(file2));
-	printf("file: %s\n", get_next_line(file));
-	printf("file: %s\n", get_next_line(file2));
+	char	*line = get_next_line(file);
+	char	*line2 = get_next_line(file2);
+	char	*line3 = get_next_line(file);
+	char	*line4 = get_next_line(file2);
+	char	*line5 = get_next_line(file);
+	char	*line6 = get_next_line(file2);
+	char	*line7 = get_next_line(file);
+	char	*line8 = get_next_line(file2);
+
+	printf("file: %s\n", line);
+	printf("file: %s\n", line2);
+	printf("file: %s\n", line3);
+	printf("file: %s\n", line4);
+	printf("file: %s\n", line5);
+	printf("file: %s\n", line6);
+	printf("file: %s\n", line7);
+	printf("file: %s\n", line8);
+	free(line);
+	free(line2);
+	free(line3);
+	free(line4);
+	free(line5);
+	free(line6);
+	free(line7);
+	free(line8);
 }
  */
